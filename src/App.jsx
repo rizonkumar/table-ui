@@ -5,8 +5,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
-import { Equal } from "lucide-react";
+import { Equal, LinkIcon } from "lucide-react";
 import { EqualNot } from "lucide-react";
 
 const mockData = Array.from({ length: 25 }, (_, i) => ({
@@ -22,19 +21,17 @@ const mockData = Array.from({ length: 25 }, (_, i) => ({
     i + 1
   }`,
   priceDiff: (Math.random() * 5).toFixed(2),
-  errorState: i % 4 === 0 ? "equal" : i % 4 === 1 ? "not-equal" : null, // 'equal', 'not-equal', or null
-  status: i % 2 === 0, // true for "approved", false for "pending"
+  errorState: i % 4 === 0 ? "equal" : i % 4 === 1 ? "not-equal" : null,
+  status: i % 2 === 0,
   url: `http://example.com/product/${i + 1}`,
   comments: i % 3 === 0 ? `This is a sample comment for product ${i + 1}.` : "",
 }));
 
-// Helper function to truncate text
 const truncateText = (text, maxLength) => {
   if (text.length <= maxLength) return text;
   return text.substring(0, maxLength) + "...";
 };
 
-// Toggle Switch Component (remains the same)
 const ToggleSwitch = ({ checked, onChange, id }) => {
   return (
     <label htmlFor={id} className="toggle-switch">
@@ -168,7 +165,7 @@ function App() {
 
         <div className="table-card__actions">
           <div className="search-input-container">
-            <SearchIcon className="search-input__icon" /> {/* Use MUI Icon */}
+            <SearchIcon className="search-input__icon" />
             <input
               type="text"
               placeholder="Search"
@@ -182,7 +179,7 @@ function App() {
               onClick={handleFilter}
               className="button button--secondary button--small"
             >
-              <FilterListIcon /> {/* Use MUI Icon */}
+              <FilterListIcon />
               Filter
             </button>
             <button
@@ -213,12 +210,6 @@ function App() {
                     {header}
                   </th>
                 ))}
-                <th
-                  scope="col"
-                  className="data-table__th data-table__th--actions"
-                >
-                  <span className="sr-only">Actions</span>
-                </th>
               </tr>
             </thead>
             <tbody className="data-table__body">
@@ -278,7 +269,7 @@ function App() {
                             handleErrorStateChange(rowIndex, "equal")
                           }
                         >
-                          <Equal className="green-color" /> {/* Use MUI Icon */}
+                          <Equal className="green-color" />
                         </button>
                         <button
                           title="Mark as Not Equal/Mismatch"
@@ -292,7 +283,6 @@ function App() {
                           }
                         >
                           <EqualNot className="red-color" />{" "}
-                          {/* Use MUI Icon */}
                         </button>
                       </div>
                     </td>
@@ -304,6 +294,7 @@ function App() {
                       />
                     </td>
                     <td className="data-table__td data-table__td--url-comments">
+                      <LinkIcon className="url-input__icon" />
                       <input
                         type="text"
                         value={item.url}
@@ -322,11 +313,6 @@ function App() {
                         rows="2"
                         className="textarea-field textarea-field--comments"
                       />
-                    </td>
-                    <td className="data-table__td data-table__td--actions-cell">
-                      <button className="button-icon">
-                        <MoreVertIcon /> {/* Use MUI Icon */}
-                      </button>
                     </td>
                   </tr>
                 ))
@@ -370,14 +356,14 @@ function App() {
                 disabled={currentPage === 1}
                 className="button-icon pagination__button"
               >
-                <ChevronLeftIcon /> {/* Use MUI Icon */}
+                <ChevronLeftIcon />
               </button>
               <button
                 onClick={() => handlePageChange(currentPage + 1)}
                 disabled={currentPage === totalPages}
                 className="button-icon pagination__button"
               >
-                <ChevronRightIcon /> {/* Use MUI Icon */}
+                <ChevronRightIcon />
               </button>
             </div>
           </div>
