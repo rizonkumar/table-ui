@@ -5,8 +5,8 @@ import SearchIcon from "@mui/icons-material/Search";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import { Equal, LinkIcon } from "lucide-react";
-import { EqualNot } from "lucide-react";
+import RefreshIcon from "@mui/icons-material/Refresh";
+import { Equal, LinkIcon, EqualNot } from "lucide-react";
 
 const mockData = Array.from({ length: 25 }, (_, i) => ({
   id: `4207${i + 1}`,
@@ -83,6 +83,7 @@ function App() {
     setCurrentPage(1);
   };
 
+  const handleRefresh = () => console.log("Refresh button clicked"); // Added handler for refresh
   const handleBack = () => console.log("Back button clicked");
   const handleSave = () => console.log("Save button clicked");
   const handleFilter = () => console.log("Filter button clicked");
@@ -155,12 +156,22 @@ function App() {
               </span>
             </div>
           </div>
-          <button
-            onClick={handleBack}
-            className="button button--primary button--small"
-          >
-            Back
-          </button>
+          <div className="table-card__header-action-buttons">
+            <button
+              onClick={handleRefresh}
+              className="button button--primary button--small"
+              aria-label="Refresh"
+              title="Refresh"
+            >
+              <RefreshIcon />
+            </button>
+            <button
+              onClick={handleBack}
+              className="button button--primary button--small"
+            >
+              Back
+            </button>
+          </div>
         </div>
 
         <div className="table-card__actions">
@@ -180,7 +191,6 @@ function App() {
               className="button button--secondary button--small"
             >
               <FilterListIcon />
-              Filter
             </button>
             <button
               onClick={handleSave}
