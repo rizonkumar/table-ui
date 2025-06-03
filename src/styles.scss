@@ -1,0 +1,450 @@
+// Variables (ensure these are defined at the top of your SCSS file)
+$primary-color: #3b82f6;
+$primary-hover-color: #2563eb;
+$secondary-color: #e5e7eb;
+$secondary-hover-color: #d1d5db;
+$text-color-primary: #1f2937;
+$text-color-secondary: #4b5563;
+$text-color-light: #6b7280;
+$border-color: #e5e7eb;
+$background-color-light: #f9fafb;
+$background-color-app: #f3f4f6;
+$white-color: #ffffff;
+$green-color: #10b981;
+$red-color: #ef4444;
+$toggle-bg-inactive: #cbd5e1;
+$toggle-bg-active: $green-color;
+
+$font-family-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+  Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+  "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+$border-radius: 0.375rem;
+$shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+  0 2px 4px -1px rgba(0, 0, 0, 0.06);
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin button-base {
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  border-radius: $border-radius;
+  font-size: 0.875rem;
+  transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out,
+    color 0.15s ease-in-out;
+  border: 1px solid transparent;
+  cursor: pointer;
+  line-height: 1.25rem;
+
+  &:focus {
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+  }
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+body {
+  margin: 0;
+  font-family: $font-family-sans;
+  background-color: $background-color-app;
+  color: $text-color-primary;
+}
+
+.table-app-container {
+  min-height: 100vh;
+  padding: 1rem;
+  @media (min-width: 768px) {
+    padding: 2rem;
+  }
+}
+
+.table-card {
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: $white-color;
+  border-radius: $border-radius;
+  box-shadow: $shadow-md;
+
+  &__header {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid $border-color;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    @media (min-width: 768px) {
+      flex-direction: row;
+      align-items: center;
+    }
+  }
+
+  &__title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0 0 0.5rem 0;
+  }
+
+  &__stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.5rem;
+    font-size: 0.875rem;
+    color: $text-color-secondary;
+    .stat-value {
+      font-weight: 500;
+      color: $text-color-primary;
+      &--completed {
+        color: $green-color;
+      }
+      &--pending {
+        color: $red-color;
+      }
+    }
+  }
+
+  &__actions {
+    padding: 1rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    @media (min-width: 768px) {
+      flex-direction: row;
+    }
+  }
+
+  &__pagination {
+    padding: 1rem 1.5rem;
+    border-top: 1px solid $border-color;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.875rem;
+    color: $text-color-secondary;
+    @media (min-width: 768px) {
+      flex-direction: row;
+    }
+  }
+}
+
+.button {
+  @include button-base;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  .MuiSvgIcon-root {
+    // Style for MUI icons within general buttons
+    font-size: 1.25rem; // Adjust as needed
+  }
+
+  &--primary {
+    background-color: $primary-color;
+    color: $white-color;
+    &:hover {
+      background-color: $primary-hover-color;
+    }
+  }
+
+  &--secondary {
+    background-color: $secondary-color;
+    color: $text-color-primary;
+    border-color: $border-color;
+    &:hover {
+      background-color: $secondary-hover-color;
+    }
+    .MuiSvgIcon-root {
+      // Specific icon color for secondary button
+      color: $text-color-secondary;
+    }
+  }
+}
+
+.button-icon {
+  // For icon-only buttons like pagination, more_vert
+  @include button-base;
+  padding: 0.375rem;
+  background-color: transparent;
+  border-color: transparent;
+  color: $text-color-light;
+
+  .MuiSvgIcon-root {
+    font-size: 1.25rem; // Size of MUI icons in icon-only buttons
+    display: block; // Helps with alignment if needed
+  }
+
+  &:hover {
+    background-color: $background-color-app;
+    color: $text-color-primary; // This will color the icon on hover if not overridden
+  }
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.search-input-container {
+  position: relative;
+  width: 100%;
+  @media (min-width: 768px) {
+    width: auto;
+  }
+
+  // Styling for the MUI SearchIcon inside the input container
+  .search-input__icon {
+    position: absolute;
+    top: 50%;
+    left: 0.75rem;
+    transform: translateY(-50%);
+    font-size: 1.25rem; // MUI icon size
+    color: $text-color-light;
+    pointer-events: none;
+  }
+}
+
+.search-input {
+  display: block;
+  width: 100%;
+  @media (min-width: 768px) {
+    width: 16rem;
+  }
+  padding: 0.5rem 0.75rem 0.5rem 2.5rem; // Ensure padding accommodates the icon
+  border: 1px solid $border-color;
+  border-radius: $border-radius;
+  line-height: 1.25;
+  background-color: $white-color;
+  color: $text-color-primary;
+  font-size: 0.875rem;
+  &::placeholder {
+    color: $text-color-light;
+  }
+  &:focus {
+    outline: none;
+    border-color: $primary-color;
+    box-shadow: 0 0 0 2px rgba($primary-color, 0.3);
+  }
+}
+
+.action-buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.table-responsive-wrapper {
+  overflow-x: auto;
+}
+
+.data-table {
+  min-width: 100%;
+  border-collapse: collapse;
+  &__head {
+    background-color: $background-color-light;
+  }
+  &__body {
+    background-color: $white-color;
+    tr {
+      border-bottom: 1px solid $border-color;
+      &:last-child {
+        border-bottom: none;
+      }
+      &:hover {
+        background-color: $background-color-light;
+      }
+      transition: background-color 0.15s ease-in-out;
+    }
+  }
+
+  &__th {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    font-size: 0.75rem;
+    font-weight: 800; // Bolder headers
+    color: #000000;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+  }
+
+  &__td {
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
+    color: $text-color-primary;
+    white-space: nowrap;
+    vertical-align: middle;
+
+    &--product-name {
+      max-width: 16rem;
+      white-space: normal;
+      .product-name-cell {
+        white-space: pre-wrap;
+        word-break: break-word;
+      }
+    }
+
+    &--url-comments {
+      min-width: 250px;
+      white-space: normal;
+    }
+
+    &--no-data {
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+      color: $text-color-light;
+    }
+
+    &--actions-cell {
+      text-align: right;
+    }
+
+    // Styles for the error actions cell
+    &--error-actions {
+      text-align: center;
+      align-items: center;
+      justify-content: center; // Or flex-start if you prefer left-alignment
+      gap: 0.25rem; // Space between the two icons
+      & .error-actions-container {
+        background-color: lightgrey;
+        border-radius: 5%;
+        padding: 0.25rem;
+      }
+    }
+  }
+}
+
+// Error Action Buttons (Done/Close icons)
+.error-action-button {
+  background: none;
+  border: none;
+  padding: 0.25rem; // Small padding around icon
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.15s ease-in-out;
+
+  .green-color {
+    color: $green-color;
+  }
+  .red-color {
+    color: $red-color;
+  }
+
+  &:hover {
+    background-color: $white-color;
+  }
+}
+
+.product-image {
+  width: 4rem;
+  height: 4rem;
+  object-fit: cover;
+  border-radius: $border-radius;
+  border: 1px solid $border-color;
+}
+
+// Toggle Switch SCSS (remains the same)
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 38px;
+  height: 22px;
+  &__input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+    &:checked + .toggle-switch__slider {
+      background-color: $toggle-bg-active;
+    }
+    &:checked + .toggle-switch__slider:before {
+      transform: translateX(16px);
+    }
+  }
+  &__slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: $toggle-bg-inactive;
+    transition: 0.3s;
+    border-radius: 22px;
+    &:before {
+      position: absolute;
+      content: "";
+      height: 16px;
+      width: 16px;
+      left: 3px;
+      bottom: 3px;
+      background-color: white;
+      transition: 0.3s;
+      border-radius: 50%;
+    }
+  }
+}
+
+.input-field,
+.textarea-field {
+  width: 100%;
+  padding: 0.375rem;
+  border: 1px solid $border-color;
+  border-radius: $border-radius;
+  font-size: 0.75rem;
+  &:focus {
+    outline: none;
+    border-color: $primary-color;
+    box-shadow: 0 0 0 1px $primary-color;
+  }
+  &--url {
+    margin-bottom: 0.25rem;
+  }
+}
+.textarea-field {
+  resize: vertical;
+}
+
+.pagination__items-per-page {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.select-field {
+  border: 1px solid $border-color;
+  border-radius: $border-radius;
+  padding: 0.375rem 0.5rem;
+  background-color: $white-color;
+  &:focus {
+    outline: none;
+    border-color: $primary-color;
+    box-shadow: 0 0 0 1px $primary-color;
+  }
+}
+
+.pagination__controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
