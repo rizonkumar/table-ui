@@ -83,7 +83,7 @@ function App() {
     setCurrentPage(1);
   };
 
-  const handleRefresh = () => console.log("Refresh button clicked"); // Added handler for refresh
+  const handleRefresh = () => console.log("Refresh button clicked");
   const handleBack = () => console.log("Back button clicked");
   const handleSave = () => console.log("Save button clicked");
   const handleFilter = () => console.log("Filter button clicked");
@@ -128,7 +128,7 @@ function App() {
     if (dataIndex !== -1) {
       const updatedData = [...data];
       if (updatedData[dataIndex].errorState === newErrorState) {
-        updatedData[dataIndex].errorState = null; // Toggle off if same icon clicked
+        updatedData[dataIndex].errorState = null;
       } else {
         updatedData[dataIndex].errorState = newErrorState;
       }
