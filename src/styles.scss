@@ -13,6 +13,10 @@ $green-color: #10b981;
 $red-color: #ef4444;
 $toggle-bg-inactive: #cbd5e1;
 $toggle-bg-active: $green-color;
+
+$font-family-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+  Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+  "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 $border-radius: 0.375rem;
 $shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
   0 2px 4px -1px rgba(0, 0, 0, 0.06);
@@ -42,6 +46,25 @@ $shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
     opacity: 0.5;
     cursor: not-allowed;
   }
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+body {
+  margin: 0;
+  font-family: $font-family-sans;
+  background-color: $background-color-app;
+  color: $text-color-primary;
 }
 
 .table-app-container {
@@ -115,7 +138,7 @@ $shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
     gap: 1rem;
     @media (min-width: 768px) {
       flex-direction: row;
-      justify-content: end;
+      justify-content: space-between;
     }
   }
 
@@ -336,6 +359,11 @@ $shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
         gap: 0.25rem;
       }
     }
+    &--action-zoom {
+      text-align: center;
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
+    }
   }
 }
 
@@ -349,10 +377,10 @@ $shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
   cursor: pointer;
 
   &:hover {
-    transform: scale(3);
+    transform: scale(2);
     position: relative;
     z-index: 10;
-    // box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
   }
 }
 

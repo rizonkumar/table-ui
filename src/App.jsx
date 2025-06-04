@@ -6,7 +6,7 @@ import FilterListIcon from "@mui/icons-material/FilterList";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import RefreshIcon from "@mui/icons-material/Refresh";
-import { Equal, LinkIcon, EqualNot } from "lucide-react";
+import { Equal, LinkIcon, EqualNot, Fullscreen } from "lucide-react";
 
 const mockData = Array.from({ length: 25 }, (_, i) => ({
   id: `4207${i + 1}`,
@@ -85,6 +85,10 @@ function App() {
   const handleBack = () => console.log("Back button clicked");
   const handleSave = () => console.log("Save button clicked");
   const handleFilter = () => console.log("Filter button clicked");
+
+  const handleZoomAction = (itemId) => {
+    console.log("Zoom action triggered for item ID:", itemId);
+  };
 
   const handleUrlChange = (rowIndex, newUrl) => {
     const dataIndex = data.findIndex(
@@ -213,9 +217,14 @@ function App() {
                   "Error",
                   "Status",
                   "URL / Comments",
+                  "",
                 ].map((header, idx) => (
                   <th key={idx} scope="col" className="data-table__th">
-                    {header}
+                    {header === "" ? (
+                      <span className="visually-hidden">Actions</span>
+                    ) : (
+                      header
+                    )}
                   </th>
                 ))}
               </tr>
@@ -321,6 +330,16 @@ function App() {
                         rows="2"
                         className="textarea-field textarea-field--comments"
                       />
+                    </td>
+                    <td className="data-table__td data-table__td--action-zoom">
+                      <button
+                        className="button-icon"
+                        onClick={() => handleZoomAction(item.id)}
+                        title="View Details"
+                        aria-label={`View details for correlation ID ${item.id}`}
+                      >
+                        <Fullscreen />
+                      </button>
                     </td>
                   </tr>
                 ))
