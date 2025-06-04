@@ -16,10 +16,8 @@ const mockData = Array.from({ length: 25 }, (_, i) => ({
   competitorProductName: `Hudson Baby Unisex Baby Mink with Faux Fur Lining Pool and Beach Robe Cover-ups ## Hudson Baby ## n/a ## Modern Botanical ## 6-12 Months ## 14.3${
     (i + 1) % 10
   }`,
-  baseImage: `https://placehold.co/80x80/e2e8f0/94a3b8?text=Base-${i + 1}`,
-  competitorImage: `https://placehold.co/80x80/d1d5db/6b7280?text=Comp-${
-    i + 1
-  }`,
+  baseImage: `https://www.imagineonline.store/cdn/shop/files/iPhone_15_Pink_PDP_Image_Position-1_alt__en-IN.jpg?v=1694605260&width=1445`,
+  competitorImage: `https://www.imagineonline.store/cdn/shop/files/iPhone_15_Blue_PDP_Image_Position-1_alt__en-IN_16b7fdd6-3b69-4b72-8445-23236e06003a.jpg?v=1694606637&width=823`,
   priceDiff: (Math.random() * 5).toFixed(2),
   errorState: i % 4 === 0 ? "equal" : i % 4 === 1 ? "not-equal" : null,
   status: i % 2 === 0,
