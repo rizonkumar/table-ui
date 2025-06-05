@@ -14,7 +14,7 @@ const mockData = Array.from({ length: 25 }, (_, i) => ({
     i % 10
   }`,
   competitorProductName: `Hudson Baby Unisex Baby Mink with Faux Fur Lining Pool and Beach Robe Cover-ups ## Hudson Baby ## n/a ## Modern Botanical ## 6-12 Months ## 14.3${
-    (i + 1) % 10
+    i % 10
   }`,
   baseImage: `https://www.imagineonline.store/cdn/shop/files/iPhone_15_Pink_PDP_Image_Position-1_alt__en-IN.jpg?v=1694605260&width=1445`,
   competitorImage: `https://www.imagineonline.store/cdn/shop/files/iPhone_15_Blue_PDP_Image_Position-1_alt__en-IN_16b7fdd6-3b69-4b72-8445-23236e06003a.jpg?v=1694606637&width=823`,
@@ -25,10 +25,10 @@ const mockData = Array.from({ length: 25 }, (_, i) => ({
   comments: i % 3 === 0 ? `This is a sample comment for product ${i + 1}.` : "",
 }));
 
-const truncateText = (text, maxLength) => {
-  if (text.length <= maxLength) return text;
-  return text.substring(0, maxLength) + "...";
-};
+// const truncateText = (text, maxLength) => {
+//   if (text.length <= maxLength) return text;
+//   return text.substring(0, maxLength) + "...";
+// };
 
 const ToggleSwitch = ({ checked, onChange, id }) => {
   return (
@@ -236,18 +236,20 @@ function App() {
                     <td className="data-table__td">{item.id}</td>
                     <td className="data-table__td data-table__td--product-name">
                       <div className="product-name-cell">
-                        {truncateText(
+                        {/* {truncateText(
                           item.baseProductName.replace(/##/g, "\n"),
                           100
-                        )}
+                        )} */}
+                        {item.baseProductName}
                       </div>
                     </td>
                     <td className="data-table__td data-table__td--product-name">
                       <div className="product-name-cell">
-                        {truncateText(
+                        {/* {truncateText(
                           item.competitorProductName.replace(/##/g, "\n"),
                           100
-                        )}
+                        )} */}
+                        {item.competitorProductName}
                       </div>
                     </td>
                     <td className="data-table__td">

@@ -232,9 +232,7 @@ body {
 .search-input {
   display: block;
   width: 100%;
-  @media (min-width: 768px) {
-    width: 16rem;
-  }
+
   padding: 0.5rem 0.75rem 0.5rem 2.5rem;
   border: 1px solid $border-color;
   border-radius: $border-radius;
@@ -251,6 +249,10 @@ body {
     outline: none;
     border-color: $primary-color;
     box-shadow: 0 0 0 2px rgba($primary-color, 0.3);
+  }
+
+  @media (min-width: 768px) {
+    width: 16rem;
   }
 }
 
@@ -330,7 +332,7 @@ body {
       }
       .url-input__icon {
         position: absolute;
-        top: 30%;
+        top: 33%;
         transform: translateY(-50%);
         color: $text-color-light;
         font-size: 1.125rem;
